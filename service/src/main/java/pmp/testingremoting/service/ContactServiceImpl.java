@@ -10,10 +10,12 @@ import com.google.common.collect.Lists;
 import pmp.testingremoting.dao.ContactRepository;
 import pmp.testingremoting.model.Contact;
 
-@Service("contactService")
+@Service(ContactServiceImpl.QUALIFIER)
 @Repository
 @Transactional
 public class ContactServiceImpl implements ContactService {
+
+    public static final String QUALIFIER = "contactService";
     @Autowired
     private ContactRepository contactRepository;
 
