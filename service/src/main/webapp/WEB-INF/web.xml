@@ -6,7 +6,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/webContext.xml</param-value>
+        <param-value>classpath:/spring/webContext.xml</param-value>
     </context-param>
 
     <listener>
