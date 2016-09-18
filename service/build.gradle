@@ -8,14 +8,3 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.3'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
 }
-
-// 18/09/16 18-41:  пока что сборка работает только в ручном режиме:
-// берём артефакт TestingRemoting\out\artifacts\service_war\service_war.war 21 389кб
-// кладём его в webapps, переименовываем в remote, руками запускаем томкат, он распаковывает файло и не поднимает приложение
-// добавляем в распакованную папку добро из interface (model + ContaceService, которая интерфейс), запускаем.
-
-// а в этом файле TestingRemoting\service\build\libs\service.war не хватает webContext.xml + web.xml
-// и артефактов interface (model + service interface)
-// судя по очередной ручной проверке эти артефакты он таки видит в файле interface.jar
-// эта либа в генерируемом war exploded зовётся testingremoting-interface.jar
-// с таким именем он, вроде, тоже доступен приложению
