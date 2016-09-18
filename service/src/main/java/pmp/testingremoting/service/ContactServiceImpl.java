@@ -2,6 +2,7 @@ package pmp.testingremoting.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,12 +11,21 @@ import com.google.common.collect.Lists;
 import pmp.testingremoting.dao.ContactRepository;
 import pmp.testingremoting.model.Contact;
 
-@Service(ContactServiceImpl.QUALIFIER)
+import javax.annotation.PostConstruct;
+
+@Service(ContactService.QUALIFIER)
 @Repository
 @Transactional
 public class ContactServiceImpl implements ContactService {
 
-    public static final String QUALIFIER = "contactService";
+    @Autowired
+    private ApplicationContext context;
+
+    @PostConstruct
+    public void whatsGoingOn() {
+        System.out.println(context.getApplicationName());
+    }
+
     @Autowired
     private ContactRepository contactRepository;
 

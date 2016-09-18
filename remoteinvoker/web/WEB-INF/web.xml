@@ -4,6 +4,9 @@
          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <display-name>Service Layer</display-name>
+    <display-name>Remote Invoker</display-name>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
 
 </web-app>
