@@ -22,4 +22,8 @@ subprojects {
 
     }
 
+    task showMeCache << {
+        configurations.compile.each { println it }
+    }
+
 }
