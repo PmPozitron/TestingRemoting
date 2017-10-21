@@ -6,4 +6,5 @@ dependencies {
 //    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.2'
 //    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.2'
 //      turned off as ResponseEntity does not need them.
+    testCompile project (":service")
 }

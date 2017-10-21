@@ -13,8 +13,7 @@ import pmp.testingremoting.model.Contact;
 
 import javax.annotation.PostConstruct;
 
-@Service(ContactService.QUALIFIER)
-@Repository
+@Repository(ContactService.QUALIFIER)
 @Transactional
 public class ContactServiceImpl implements ContactService {
 

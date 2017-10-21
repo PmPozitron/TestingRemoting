@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
+import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -38,6 +39,13 @@ public class ContactControllerIntegrationTest {
     @Autowired
     private ContactController controller;
 
+
+//    @Autowired
+    private HttpInvokerServiceExporter exporter;
+
+    @Autowired
+    private ApplicationContext context;
+
     private MockMvc mockMvc;
 
     @Before
@@ -55,10 +63,26 @@ public class ContactControllerIntegrationTest {
 
     @Configuration
     @ImportResource(locations = {
-            "classpath*:spring/remoteInvokerContext.xml",
+//            "classpath*:spring/remoteInvokerContext.xml",
             "classpath*:spring/webContext.xml",
+            "classpath*:spring/serviceExporter.xml"
     })
     static class TestConfig {
 
+
+
+    }
+
+    static class NonRemoteInvoker extends HttpInvokerProxyFactoryBean {
+        private ApplicationContext context;
+
+        public void setContext(ApplicationContext context) {
+            this.context = context;
+        }
+
+        @Override
+        public Object getObject() {
+            return context.getBean(getObjectType());
+        }
     }
 }
