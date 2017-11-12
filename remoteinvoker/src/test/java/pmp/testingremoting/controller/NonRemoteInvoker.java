@@ -3,8 +3,8 @@ package pmp.testingremoting.controller;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
-import pmp.testingremoting.service.BusinessServiceConfig;
 import pmp.testingremoting.service.OpenedHttpServiceExporter;
+import pmp.testingremoting.service.config.BusinessServiceConfig;
 
 /**
  * Created by pozitron on 21.10.2017.

@@ -34,28 +34,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-//@ContextHierarchy({
-//        @ContextConfiguration(classes = {
-//                BusinessServiceConfig.class,
-//
-//        }),
-        @ContextConfiguration(classes = {
-                ContactControllerIntegrationTest.Config.class
-        })
-//})
+@ContextConfiguration(classes = {
+        BusinessServiceConfig.class,
+})
 public class ContactControllerIntegrationTest {
 
     @Autowired
     private ContactController controller;
-
-    @Autowired
-    private ApplicationContext context;
-
-    @Autowired
-    private BusinessServiceConfig businessServiceConfig;
-
-    @Autowired
-    private RemoteInvokerConfig remoteInvokerConfig;
 
     private MockMvc mockMvc;
 
@@ -70,29 +55,5 @@ public class ContactControllerIntegrationTest {
 
         ResultActions ra = mockMvc.perform(get(ContactController.MAPPING));
         ra.andExpect(status().isOk());
-    }
-
-    @Configuration
-    @Import({
-//            RemoteInvokerConfig.class,
-            BusinessServiceConfig.class,
-
-    })
-    static class Config {
-        @Bean
-        public NonRemoteInvoker serviceInvoker() {
-            NonRemoteInvoker invoker = new NonRemoteInvoker();
-            invoker.setServiceUrl("http://localhost:8080/remote/ContactService");
-            invoker.setServiceInterface(ContactService.class);
-
-//        if (context == null) {
-//            context = new GenericXmlApplicationContext("classpath:spring/serviceExporter.xml", "classpath*:openedServiceExporter.xml");
-//        }
-
-//        invoker.setExporter((OpenedHttpServiceExporter)context.getBean("contactExporter"));
-//        invoker.setExporter(contactExporter());
-
-            return invoker;
-        }
     }
 }

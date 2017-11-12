@@ -10,6 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pmp.testingremoting.dao.ContactRepository;
 import pmp.testingremoting.model.Contact;
+import pmp.testingremoting.service.config.BusinessServiceConfig;
 
 import javax.annotation.Resource;
 
@@ -24,7 +25,8 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
-        ContactServiceIntegrationTest.TestConfig.class,
+//        ContactServiceIntegrationTest.TestConfig.class,
+        BusinessServiceConfig.class
 })
 public class ContactServiceIntegrationTest {
 

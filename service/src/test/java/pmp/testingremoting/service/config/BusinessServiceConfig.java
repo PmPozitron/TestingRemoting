@@ -12,35 +12,9 @@ import javax.annotation.PostConstruct;
  * Created by pozitron on 21.10.2017.
  */
 @Configuration
-@Import(BusinessServiceConfig.Config.class)
+@ImportResource(locations = {
+        "classpath:spring/serviceExporter.xml",
+})
 public class BusinessServiceConfig {
-
-    @Autowired
-    private ContactService service;
-
-//    @Autowired
-    private OpenedHttpServiceExporter exporter;
-
-//    @PostConstruct
-    public void finetuneExporter () {
-        exporter.setService(service);
-    }
-
-
-    @Configuration
-    @ImportResource(locations = {
-//            "classpath:spring/serviceExporter.xml",
-            "classpath:openedServiceExporter.xml",
-    })
-    static class Config {
-//        @Bean
-        public OpenedHttpServiceExporter contactExporter() {
-            OpenedHttpServiceExporter exporter = new OpenedHttpServiceExporter();
-            exporter.setServiceInterface(pmp.testingremoting.service.ContactService.class);
-
-            return exporter;
-        }
-
-    }
 
 }
