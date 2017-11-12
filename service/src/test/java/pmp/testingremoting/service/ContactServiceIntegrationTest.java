@@ -3,8 +3,6 @@ package pmp.testingremoting.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -50,13 +48,5 @@ public class ContactServiceIntegrationTest {
         StringBuilder sb = new StringBuilder();
         result.forEach(sb::append);
         System.out.println(sb);
-    }
-
-    @Configuration
-    @ImportResource({
-            "classpath:spring/serviceExporter.xml",
-    })
-    static class TestConfig {
-
     }
 }

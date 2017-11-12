@@ -3,7 +3,6 @@ package pmp.testingremoting.service;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.remoting.support.RemoteInvocation;
 import org.springframework.remoting.support.RemoteInvocationResult;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +14,6 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by pozitron on 12.11.2017.
  */
-//@Component
 public class OpenedHttpServiceExporter extends HttpInvokerServiceExporter {
 
     @Override
