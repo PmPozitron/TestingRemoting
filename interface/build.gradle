@@ -1,5 +1,4 @@
 dependencies {
     compile group: 'org.jadira.usertype', name: 'usertype.core', version: '6.0.1.GA'
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
-    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
 }
