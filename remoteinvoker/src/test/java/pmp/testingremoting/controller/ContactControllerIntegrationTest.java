@@ -3,17 +3,10 @@ package pmp.testingremoting.controller;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
-import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -21,9 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pmp.testingremoting.controller.config.RemoteInvokerConfig;
-import pmp.testingremoting.service.ContactService;
-import pmp.testingremoting.service.config.BusinessServiceConfig;
 
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -34,13 +24,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {
-        BusinessServiceConfig.class,
+@ContextHierarchy({
+        @ContextConfiguration(classes = {
+                ContactControllerIntegrationTest.TunedBusinessConfig.class
+        }),
+        @ContextConfiguration(classes = {
+                ContactControllerIntegrationTest.TunedRemoteInvokerConfig.class
+        })
 })
 public class ContactControllerIntegrationTest {
 
     @Autowired
     private ContactController controller;
+
+    @Autowired
+    private ApplicationContext context;
 
     private MockMvc mockMvc;
 
@@ -55,5 +53,23 @@ public class ContactControllerIntegrationTest {
 
         ResultActions ra = mockMvc.perform(get(ContactController.MAPPING));
         ra.andExpect(status().isOk());
+    }
+
+    @Configuration
+    @ImportResource(locations = {
+            "classpath:openedServiceExporter.xml"
+    })
+    static class TunedBusinessConfig {
+
+    }
+
+
+    @Configuration
+    @ImportResource(locations = {
+            "classpath:spring/webContext.xml",
+            "classpath:nonRemoteInvokerContext.xml",
+    })
+    static class TunedRemoteInvokerConfig {
+
     }
 }

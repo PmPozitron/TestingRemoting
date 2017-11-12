@@ -2,35 +2,31 @@ package pmp.testingremoting.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pmp.testingremoting.dao.ContactRepository;
 import pmp.testingremoting.model.Contact;
 import pmp.testingremoting.service.config.BusinessServiceConfig;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Pozitron on 18.09.2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {
-//        ContactServiceIntegrationTest.TestConfig.class,
         BusinessServiceConfig.class
 })
 public class ContactServiceIntegrationTest {
 
-    @Resource(name = ContactServiceImpl.QUALIFIER)
+    @Autowired
     private ContactService service;
 
     @Resource
@@ -59,10 +55,6 @@ public class ContactServiceIntegrationTest {
     @Configuration
     @ImportResource({
             "classpath:spring/serviceExporter.xml",
-//            "classpath:openedServiceExporter.xml"
-    })
-    @ComponentScan(basePackages = {
-            "pmp.testingremoting.service"
     })
     static class TestConfig {
 
