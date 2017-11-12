@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pmp.testingremoting.model.Contact;
 import pmp.testingremoting.service.config.BusinessServiceConfig;
 
 import javax.annotation.Resource;
@@ -22,10 +21,10 @@ import static org.junit.Assert.assertNotNull;
 @ContextConfiguration(classes = {
         BusinessServiceConfig.class
 })
-public class ContactServiceIntegrationTest {
+public class ContactServiceImplIntegrationTest {
 
     @Autowired
-    private ContactService service;
+    private ContactServiceImpl service;
 
     @Resource
     private HttpInvokerServiceExporter contactExporter;
@@ -33,7 +32,7 @@ public class ContactServiceIntegrationTest {
     @Test
     public void thatData_isAccessibleLocally() {
         assertNotNull("service was not wired !", service);
-        List<Contact> result = service.findAll();
+        List<String> result = service.getContacts();
         assertFalse("data was not received from H2 storage !", result.isEmpty());
         StringBuilder sb = new StringBuilder();
         result.forEach(sb::append);
@@ -43,7 +42,7 @@ public class ContactServiceIntegrationTest {
     @Test
     public void thatData_isAccessibleViaExporter() {
         assertNotNull("exporter was not wired !", contactExporter);
-        List<Contact> result = ((ContactService)contactExporter.getService()).findAll();
+        List<String> result = ((ContactServiceImpl)contactExporter.getService()).getContacts();
         assertFalse("data was not received from exporter!", result.isEmpty());
         StringBuilder sb = new StringBuilder();
         result.forEach(sb::append);

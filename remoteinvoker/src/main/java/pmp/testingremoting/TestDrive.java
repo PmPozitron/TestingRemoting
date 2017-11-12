@@ -1,7 +1,6 @@
 package pmp.testingremoting;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
-import pmp.testingremoting.model.Contact;
 import pmp.testingremoting.service.ContactService;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class TestDrive {
         context.refresh();
 
         ContactService service = (ContactService)context.getBean("serviceInvoker");
-        List<Contact> result = service.findAll();
+        List<String> result = service.getContacts();
         StringBuilder sb = new StringBuilder();
         result.forEach(sb::append);
         System.out.println(sb);

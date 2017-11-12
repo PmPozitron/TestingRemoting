@@ -5,7 +5,7 @@
 
     <import resource="classpath:spring/serviceExporter.xml"/>
     <bean id="contactExporter" class="pmp.testingremoting.service.OpenedHttpServiceExporter">
-        <property name="service" ref="contactService"/>
+        <property name="service" ref="contactServiceImpl"/>
         <property name="serviceInterface" value="pmp.testingremoting.service.ContactService"/>
     </bean>
 

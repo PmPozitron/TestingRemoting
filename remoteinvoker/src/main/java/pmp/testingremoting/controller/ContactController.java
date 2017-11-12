@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pmp.testingremoting.service.ContactService;
 
-import javax.annotation.Resource;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by Pozitron on 18.09.2016.
@@ -25,6 +26,8 @@ public class ContactController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
-        return new ResponseEntity<String>(serviceInvoker.findAll().toString(), HttpStatus.OK);
+        List<String> strings = serviceInvoker.getContacts();
+
+        return new ResponseEntity<String>(Arrays.toString(strings.toArray()), HttpStatus.OK);
     }
 }

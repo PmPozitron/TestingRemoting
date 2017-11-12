@@ -1,7 +1,4 @@
 dependencies {
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.2.Final'
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.2.Final'
-    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
     compile group: 'org.jadira.usertype', name: 'usertype.core', version: '6.0.1.GA'
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
