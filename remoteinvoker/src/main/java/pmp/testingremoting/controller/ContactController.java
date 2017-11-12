@@ -1,5 +1,6 @@
 package pmp.testingremoting.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +20,11 @@ public class ContactController {
     public static final String QUALIFIER = "contactController";
     public static final String MAPPING = "/contact";
 
-    @Resource
-    private ContactService service;
+    @Autowired
+    private ContactService serviceInvoker;
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
-        return new ResponseEntity<String>(service.findAll().toString(), HttpStatus.OK);
+        return new ResponseEntity<String>(serviceInvoker.findAll().toString(), HttpStatus.OK);
     }
 }

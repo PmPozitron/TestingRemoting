@@ -56,8 +56,8 @@ public class ContactServiceIntegrationTest {
 
     @Configuration
     @ImportResource({
-            "classpath*:spring/persistenceContext.xml",
-            "classpath*:spring/serviceExporter.xml"
+            "classpath:spring/serviceExporter.xml",
+//            "classpath:openedServiceExporter.xml"
     })
     @ComponentScan(basePackages = {
             "pmp.testingremoting.service"
