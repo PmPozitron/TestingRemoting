@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean;
+import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import pmp.testingremoting.service.ContactService;
 
 /**
@@ -17,18 +18,37 @@ import pmp.testingremoting.service.ContactService;
  */
 @Configuration
 @ImportResource(locations = {
-        "classpath:spring/webContext.xml",
+        "classpath:spring/webContext.xml"
 })
 public class RemoteInvokerConfig {
+
+    private ApplicationContext context;
 
     @Bean
     public NonRemoteInvoker contactService() {
         NonRemoteInvoker invoker = new NonRemoteInvoker();
         invoker.setServiceUrl("http://localhost:8080/remote/ContactService");
         invoker.setServiceInterface(ContactService.class);
-        GenericXmlApplicationContext context = new GenericXmlApplicationContext("classpath:spring/serviceExporter.xml");
-        invoker.setContext(context);
+
+        if (context == null) {
+            context = new GenericXmlApplicationContext("classpath:spring/serviceExporter.xml", "classpath:openedServiceExporter.xml");
+        }
+
+//        invoker.setContext(context);
+        invoker.setExporter(contactExporter());
 
         return invoker;
+    }
+
+//    @Bean
+    public OpenedHttpServiceExporter contactExporter() {
+        OpenedHttpServiceExporter exporter = new OpenedHttpServiceExporter();
+        if (context == null) {
+            context = new GenericXmlApplicationContext("classpath:spring/serviceExporter.xml");
+        }
+        exporter.setService(context.getBean(ContactService.class));
+        exporter.setServiceInterface(pmp.testingremoting.service.ContactService.class);
+
+        return exporter;
     }
 }

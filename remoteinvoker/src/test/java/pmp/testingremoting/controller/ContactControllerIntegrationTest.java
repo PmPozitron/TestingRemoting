@@ -31,14 +31,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextHierarchy({
-        @ContextConfiguration(classes = {
-                BusinessServiceConfig.class,
-
-        }),
+//@ContextHierarchy({
+//        @ContextConfiguration(classes = {
+//                BusinessServiceConfig.class,
+//
+//        }),
         @ContextConfiguration(classes = {
                 RemoteInvokerConfig.class
-        })})
+        })
+//})
 public class ContactControllerIntegrationTest {
 
     @Autowired
