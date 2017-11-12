@@ -27,7 +27,6 @@ public class ContactController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<String> findAll() {
         List<String> strings = serviceInvoker.getContacts();
-
         return new ResponseEntity<String>(Arrays.toString(strings.toArray()), HttpStatus.OK);
     }
 }

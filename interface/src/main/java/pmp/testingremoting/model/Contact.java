@@ -1,20 +1,10 @@
 package pmp.testingremoting.model;
-import static javax.persistence.GenerationType.IDENTITY;
+
+import org.joda.time.DateTime;
 
 import java.io.Serializable;
 
-import org.hibernate.annotations.Type;
-import org.joda.time.DateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Version;
-
-@Entity
-@Table(name = "contact")
 public class Contact implements Serializable {
     private Long id;
     private int version;
@@ -22,31 +12,22 @@ public class Contact implements Serializable {
     private String lastName;
     private DateTime birthDate;
 
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "ID")
     public Long getId() {
         return id;
     }
 
-    @Version
-    @Column(name = "VERSION")
     public int getVersion() {
         return version;
     }
 
-    @Column(name = "FIRST_NAME")
     public String getFirstName() {
         return firstName;
     }
 
-    @Column(name = "LAST_NAME")
     public String getLastName() {
         return lastName;
     }
 
-    @Column(name = "BIRTH_DATE")
-    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getBirthDate() {
         return birthDate;
     }

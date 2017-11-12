@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ImportResource(locations = {
-        "classpath:spring/webContext.xml",
+//        "classpath:spring/webContext.xml",
         "classpath:spring/remoteInvokerContext.xml"
 })
 public class RemoteInvokerConfig {

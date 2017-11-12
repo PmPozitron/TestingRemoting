@@ -66,7 +66,7 @@ public class ContactControllerIntegrationTest {
 
     @Configuration
     @ImportResource(locations = {
-            "classpath:spring/webContext.xml",
+//            "classpath:spring/webContext.xml",
             "classpath:nonRemoteInvokerContext.xml",
     })
     static class TunedRemoteInvokerConfig {

@@ -9,10 +9,7 @@ import static java.util.Arrays.asList;
 
 @Service
 public class ContactServiceImpl implements ContactService{
-
     public List<String> getContacts() {
         return new ArrayList<String>(asList("karl marx", " fridrih engels", " !!!"));
     }
-
-
 }
